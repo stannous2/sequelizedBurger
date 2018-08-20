@@ -1,0 +1,19 @@
+{
+  "name": "burger-local",
+  "version": "1.0.0",
+  "description": "burgers",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "Tin Tran",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0",
+    "npm": "^6.3.0"
+  }
+}
