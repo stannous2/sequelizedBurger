@@ -3,42 +3,54 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Eat Da Burger</title>
-	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/lumen/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
+	<link rel="stylesheet" href="css/burger_style.css" type="text/css" />
+	<title>MVC With Burgers!</title>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="js/view.js"></script>
 </head>
 
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 offset-md-3">
-				<ul class="list-group todo-list">
-					<li class="list-group-item new-item">
-						<form id="todo-form">
-              <div class="container">
-                <div class="row">
-                  <div class="col-10">
-                    <input class="new-item form-control" placeholder="Add a todo" type="text" />
-                  </div>
-                  <div class="col-2">
-                    <button type="submit" class="btn btn-success">Add Todo</button>
-                  </div>
-                </div>
-              </div>
-						</form>
-					</li>
-					<span class="todo-container">
-					</span>
-				</ul>
-			</div>
-		</div>
+	<!--Jumbotron-->
+	<div class="jumbotron text-center bg-primary text-white">
+		<h2>Welcome to The Home of Awesome Burgers!!!</h2>
+		<img src="img/cheese-burger.jpeg">
 	</div>
-	<!-- Custom Script -->
-	<script src="js/view.js" type="text/javascript"></script>
 
+	<ul>
+		<li>
+
+			<p>
+				<span class="new-burger-container">
+					1. cripy chicken
+					<button class="change-devoured" data-id="1" data-newdevoured="false">
+						Devoured!
+					</button>
+				</span>
+			</p>
+		</li>
+		<li>
+
+			<h2>Burgers devoured!</h2>
+
+			<ul>
+				<li>
+					<p>
+						<span class="burger-devoured">
+							9. ox burger <button class="delete-burger" data-id="9">Delete!</button>
+						</span>
+					</p>
+				</li>
+			</ul>
+
+			<h2>Add a Burger</h2>
+			<form class="create-form">
+
+				<div class="burger-form">
+					<input type="text" id="new-burger" name="name">
+				</div>
+
+				<button type="submit">Submit</button>
+			</form>
 </body>
 
 </html>
