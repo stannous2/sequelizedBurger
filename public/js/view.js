@@ -1,14 +1,12 @@
 $(document).ready(function() {
   // Getting a reference to the input field where user adds a new burger
   var $newBurgerInput = $("input.new-burger");
+
   // Our new burgers will go inside the burgerContainer
   var $newBurgerContainer = $(".new-burger-container");
+
   // Adding event listeners for deleting, editing, and adding todos
   $(document).on("click", "button.delete", deleteBurger);
-  // $(document).on("click", "button.complete", toggleComplete);
-  // $(document).on("click", ".todo-item", editTodo);
-  // $(document).on("keyup", ".todo-item", finishEdit);
-  // $(document).on("blur", ".todo-item", cancelEdit);
   $(document).on("submit", ".burger-form", insertBurger);
 
   // Our initial burgers array
@@ -45,8 +43,6 @@ $(document).ready(function() {
     }).then(getBurgers);
   }
 
-  
-
   // This function constructs a burger-item row
   function createNewRow(burger) {
     var $newInputRow = $(
@@ -75,8 +71,8 @@ $(document).ready(function() {
   function insertBurger(event) {
     event.preventDefault();
     var burger = {
-      text: $newItemInput.val().trim(),
-      complete: false
+      text: $newBurgerInput.val().trim(),
+      devoured: false
     };
 
     $.post("/api/burgers", burger, getBurgers);

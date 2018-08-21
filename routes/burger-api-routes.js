@@ -16,7 +16,7 @@ module.exports = function(app) {
   app.get("/api/burgers", function(req, res) {
     var query = {};
     if (req.query.id) {
-      query.AuthorId = req.query.id;
+      query.id = req.query.id;
       console.log(`query...  ${query}`)
     }
     db.Burger.findAll({
