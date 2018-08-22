@@ -5,6 +5,9 @@ $(document).ready(function() {
   // Our new burgers will go inside the burgerContainer
   var $newBurger = $(".new-burger");
 
+  // Our new burgers will go inside the burgerContainer
+  var $devouredBurger = $(".devoured-burger");
+
   // Adding event listeners for deleting, editing, and adding burgers
   $(document).on("click", "button.delete", deleteBurger);
   // $(document).on("submit", "#add-burger", insertBurger);
@@ -22,6 +25,8 @@ $(document).ready(function() {
 
   // })
 
+  $(document).on("click", "button.devour", moveBurger);
+
   // Our initial burgers array
   var burgers = [];
   console.log(burgers)
@@ -29,14 +34,33 @@ $(document).ready(function() {
   // Getting burgers from database when page loads
   getBurgers();
 
+  // // This function resets the burgers displayed with new burgers from the database
+  // function initializeRows() {
+  //   $newBurger.empty();
+  //   var rowsToAdd = [];
+  //   for (var i = 0; i < burgers.length; i++) {
+  //     rowsToAdd.push(createNewRow(burgers[i]));
+  //   }
+  //   $newBurger.prepend(rowsToAdd);
+  // }
+
   // This function resets the burgers displayed with new burgers from the database
   function initializeRows() {
-    $newBurger.empty();
-    var rowsToAdd = [];
-    for (var i = 0; i < burgers.length; i++) {
-      rowsToAdd.push(createNewRow(burgers[i]));
+    if(burger.devoured){
+      $newBurger.empty();
+      var rowsToAdd = [];
+      for (var i = 0; i < burgers.length; i++) {
+        rowsToAdd.push(createNewRow(burgers[i]));
+      }
+      $newBurger.prepend(rowsToAdd);
+    } else {
+      $devouredBurger.empty();
+      var rowsToAdd = [];
+      for (var i = 0; i < burgers.length; i++) {
+        rowsToAdd.push(createNewRow(burgers[i]));
+      }
+      $devouredBurger.prepend(rowsToAdd);
     }
-    $newBurger.prepend(rowsToAdd);
   }
 
   // This function grabs burgers from the database and updates the view
@@ -73,6 +97,14 @@ $(document).ready(function() {
       ].join("")
     );
 
+    $newInputRow.find("button.delete").data("id", burger.id);
+    $newInputRow.data("burger", burger);
+    // if (burger.complete) {
+    //   $newInputRow.find("span").css("text-decoration", "line-through");
+    // }
+    return $newInputRow;
+  }
+  
   // This function constructs a devoured burger row
   function createDevouredRow(burger) {
     var $newInputRow = $(
@@ -88,14 +120,11 @@ $(document).ready(function() {
         "</li>"
       ].join("")
     );
-
     $newInputRow.find("button.delete").data("id", burger.id);
     $newInputRow.data("burger", burger);
-    // if (burger.complete) {
-    //   $newInputRow.find("span").css("text-decoration", "line-through");
-    // }
     return $newInputRow;
   }
+
 
   // This function inserts a new burger into our database and then updates the view
   function insertBurger(event) {
