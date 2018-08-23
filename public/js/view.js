@@ -25,11 +25,11 @@ $(document).ready(function() {
 
   // })
 
-  $(document).on("click", "button.devour", moveBurger);
+  //$(document).on("click", "button.devour", moveBurger);
 
   // Our initial burgers array
   var burgers = [];
-  console.log(burgers)
+  console.log(JSON.stringify(burgers))
 
   // Getting burgers from database when page loads
   getBurgers();
@@ -46,21 +46,23 @@ $(document).ready(function() {
 
   // This function resets the burgers displayed with new burgers from the database
   function initializeRows() {
-    if(burger.devoured){
-      $newBurger.empty();
-      var rowsToAdd = [];
-      for (var i = 0; i < burgers.length; i++) {
+    var rowsToAdd = [];
+    for (i = 0; i < burgers.length; i++){
+      if(burgers[i].devoured){
+        $newBurger.empty();
         rowsToAdd.push(createNewRow(burgers[i]));
-      }
-      $newBurger.prepend(rowsToAdd);
-    } else {
+        console.log('burger ' + JSON.stringify(burgers[i]))
+        $newBurger.prepend(rowsToAdd);
+
+    } else if(!burgers[i].devoured) {
       $devouredBurger.empty();
-      var rowsToAdd = [];
-      for (var i = 0; i < burgers.length; i++) {
-        rowsToAdd.push(createNewRow(burgers[i]));
-      }
+      // var rowsToAdd = [];
+      rowsToAdd.push(createNewRow(burgers[i]));
+    
       $devouredBurger.prepend(rowsToAdd);
     }
+  }
+  
   }
 
   // This function grabs burgers from the database and updates the view
